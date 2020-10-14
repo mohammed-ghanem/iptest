@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="block-all-mixed-content"
+    />
+    <meta name="msapplication-starturl" content="/" />
+    <rule
+      from="^http://(csi|encrypted-tbn\d|fonts|g0|[\w-]+\.metric|ssl|t\d)\.
+gstatic\.com/"
+      to="https://$1.gstatic.com/"
+    />
+    <title></title>
+
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: 1em auto;
+      }
+      th,
+      td {
+        padding: 0.25em 0.5em;
+        text-align: center;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <span class="counter">1,234,567.00</span>
+    <span>$</span>
+    <span class="counter">1.99</span>
+    <span class="counter">12345</span>
+
+    <div class="test"></div>
+    <!--
+     <script src="jquery-3.4.1.min.js"></script>
+    <script src="news.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous"></script> -->
+
+    <script>
+      function ipLookUp() {
+        $.ajax('http://ip-api.com/json').then(
+          function success(response) {
+            console.log("User's Location Data is ", response)
+            console.log("User's Country", response.country)
+            if (response.country === 'Egypt') {
+              $('.test').html(response.country)
+            }
+          },
+
+          function fail(data, status) {
+            console.log('Request failed.  Returned status of', status)
+          },
+        )
+      }
+      ipLookUp()
+    </script>
+  </body>
+</html>
